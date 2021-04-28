@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: dimgray;
+        }
+
+        #container {
+            background-color: black;
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+        }
+
+    </style>
+    <script src="game.js"></script>
+</head>
+<body>
+
+<audio controls autoplay src="./8Bit-DG812-5165613%20(mp3cut.net).mp3"></audio>
+<h1 id="Game" style="width: 300px;margin-left: auto;margin-right: auto;margin-top: 50px;color: white">Game đua ô tô</h1>
+<p><img src="car_1.png" width="100px" height="200px" style="margin-left: 50px"/>
+    <img src="car_3.png" width="120px" height="220px" style="margin-left: 1000px"/>
+</p>
+<div id="container">
+    <div style="margin-right: auto;margin-left: auto;width: 300px">
+        <button id="btn" onclick="startGame()" style="width: 100px ; height: 30px">Bắt đầu</button>
+        <br><br>
+        <button id="tutorial" onclick="tutorial()" style="width: 100px ; height: 30px">Hướng dẫn</button>
+        <div id="abc" style="display: none; background-color: white; width: 400px ; height: 50px ">
+            <p id="2" style="color: black">Di chuyển các phím trái, phải để điều khiển ô tô của bạn</p>
+        </div>
+    </div>
+</div>
+<script>
+    function randomHex() {
+        return Math.floor(Math.random() * 255);
+    }
+
+    function randomColor() {
+        let red = randomHex();
+        let blue = randomHex();
+        let green = randomHex();
+        return "rgb(" + red + "," + blue + "," + green + ")";
+    };
+
+    function changeColor() {
+        document.getElementById('btn').style.backgroundColor = randomColor()
+    }
+
+    setInterval(changeColor, 100)
+
+    function startGame() {
+        window.location.href = 'gameoto.html'
+    }
+
+    let btn = document.getElementById('abc');
+
+    function tutorial() {
+        if (document.getElementById('abc').style.display == "none") {
+            btn.style.display = 'block';
+        } else {
+            btn.style.display = 'none';
+        }
+    }
+
+
+</script>
+</body>
+</html>

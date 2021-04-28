@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="m"></p><p id="s"></p>
+<script>
+    let milis = 0;
+    let second = 0;
+
+    function timeplus(){
+        milis ++;
+        document.getElementById('s').innerHTML = milis;
+        if(milis === 600){
+            second++
+            document.getElementById('m').innerHTML = second;
+            milis =0;
+        }
+    }
+    setInterval(timeplus,1);
+</script>
+</body>
+</html>
