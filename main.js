@@ -6,6 +6,7 @@ function main() {
 
     drawWay();
     drawAI();
+    tangToc()
     checkClass();
     checkOut();
 

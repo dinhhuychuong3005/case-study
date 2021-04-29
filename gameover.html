@@ -17,12 +17,12 @@
 </head>
 <body>
 <div>
-<h1 id="diem"></h1>
+    <h1 id="diem"></h1>
     <button type="button" onclick="playAgain()" id="again">Chơi lại</button>
 </div>
 <script>
     let mmm = localStorage.getItem('abc')
-document.getElementById('diem').innerText = 'Điểm của bạn là : ' + mmm
+    document.getElementById('diem').innerText = 'Điểm của bạn là : ' + mmm
     function playAgain(){
         window.location.href = 'index.html'
     }

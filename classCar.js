@@ -72,6 +72,7 @@ function drawAI() {
     for (let i = 0; i < carAI.length; i++) {
         carAI[i].draw();
         carAI[i].move();
+        carAI[i].y += 2;
     }
 }
 function checkCrash(obj1, obj2) {
@@ -95,6 +96,7 @@ function checkOut() {
             point.play()
             carAI.splice(i, 1);
             score.innerText++;
+            this.speed += 2
         }
     }return score.innerText
 }
