@@ -1,25 +1,25 @@
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
 let roads = [];
 let player = new Car(230, 500, 'car_' + c + '.png', 50, 110);
 let colorCar = ['car1.png', 'car2.png', 'car3.png', 'car4.png', 'car5.png']
-let score = document.querySelector('.score > span')
 let carAI = [];
-let time = document.querySelector('.time >span ')
 let milis = 0;
 let second = 0;
-
 function timeplus() {
-    milis++;
-    if (milis === 60) {
-        second++
-        time.innerHTML = second;
-        milis = 0;
-    }
+   if (second< 10 && milis < 10){
+       time.innerHTML = '0' + second + ' : 0' + milis;
+   }else if (second >= 10 && milis <10){
+       time.innerHTML = second + ' : 0' + milis;
+   }else if (second < 10 && milis >= 10){
+       time.innerHTML = '0' + second + ' : ' + milis;
+   }else {
+       time.innerHTML = second + ' : ' + milis;
+   }
+   milis ++;
+   if (milis === 60){
+       second++;
+       milis = 0;
+   }
 }
-
-setInterval(timeplus, 1);
-
 function Car(x, y, link, width, height) {
     this.x = x
     this.y = y;
@@ -45,28 +45,6 @@ function Car(x, y, link, width, height) {
         }
     }
 }
-
-class Road {
-    constructor(img, x, y) {
-        this.x = x;
-        this.y = y;
-        this.img = img;
-    }
-
-    draw(canvas) {
-        //let ctx = canvas.getContext('2d');
-        ctx.drawImage(this.img, this.x, this.y, canvas.width, canvas.height / 2);
-    }
-
-    move() {
-        this.y += 5;
-    }
-
-    setPosition(y) {
-        this.y = y;
-    }
-}
-
 addEventListener('keydown', (e) => {
     if (e.keyCode == 37) {
         player.dx = 10;
@@ -75,6 +53,9 @@ addEventListener('keydown', (e) => {
         player.dx = -10;
     }
 })
+function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
 
 function createAI() {
     let pos = [150, 230, 310];
@@ -87,44 +68,12 @@ function createAI() {
     // }
     setTimeout(createAI, randTime)
 }
-
-createAI();
-
-
 function drawAI() {
     for (let i = 0; i < carAI.length; i++) {
         carAI[i].draw();
         carAI[i].move();
     }
 }
-
-function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function creatRoad() {
-
-    let img = new Image();
-    img.src = 'road.png'
-    let road1 = new Road(img, 0, -(canvas.height / 2));
-    let road2 = new Road(img, 0, 0);
-    let road3 = new Road(img, 0, canvas.height / 2);
-    let road4 = new Road(img, 0, canvas.height);
-    roads = [road1, road2, road3, road4]
-}
-
-function drawWay() {
-    let img = new Image();
-    img.src = 'road.png'
-    for (let i = 0; i < roads.length; i++) {
-        roads[i].move();
-        roads[i].draw(canvas);
-        if (roads[i].y > canvas.height) {
-            roads[i].setPosition(-(canvas.height / 2));
-        }
-    }
-}
-
 function checkCrash(obj1, obj2) {
     let lef1 = obj1.x;
     let right1 = obj1.x + obj1.width;
@@ -140,46 +89,27 @@ function checkCrash(obj1, obj2) {
         return true;
     }
 }
-
-
 function checkOut() {
     for (let i = 0; i < carAI.length; i++) {
         if (carAI[i].y > 500) {
+            point.play()
             carAI.splice(i, 1);
             score.innerText++;
         }
-    }
+    }return score.innerText
 }
-
-
-player.draw(canvas)
-creatRoad();
-
-function main() {
-    //clearAll();
-    drawWay();
-    drawAI();
-    checkClass();
-    checkOut();
-
-    player.draw(canvas)
-    player.move2();
-    requestAnimationFrame(main);
-}
-
-function speed() {
-    this.speed += 5
-}
-
-setInterval(speed, 3000)
 
 function checkClass() {
     for (let i = 0; i < carAI.length; i++) {
         if (checkCrash(player, carAI[i])) {
+            vacham.play()
+            localStorage.setItem('abc',checkOut());
             alert("Game Over");
+            carAI = [];
+            window.location.href = 'gameover.html'
+
         }
     }
 }
-//window.location.href = 'gameover.html'
 
-main();
+

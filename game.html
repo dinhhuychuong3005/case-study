@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="chon_xe.js"></script>
+
+<style>
+    body
+</style>
 
 </head>
-<body>
-<div class="score-time">
+<body id="gameover">
+<div class="score-time" style="margin-left: 200px">
     <div class="score">Score: <span>0</span></div>
     <div class="time">Time: <span></span></div>
 </div>
 <audio id='vacham'>
-    <source src="8Bit-DG812-5165613%20(mp3cut.net).mp3" type="audio/mpeg">
+    <source src="Explosion5.m4a" type="audio/mpeg">
 </audio>
+<audio id="point" src="Bell2.m4a"></audio>
 <canvas id="myCanvas" width="500px" height="600px" style="margin-left: 300px; border: 1px solid"></canvas>
 <script>
     let bcd = document.getElementById('vacham')
@@ -21,4 +25,8 @@
 </script>
 </body>
 </html>
-<script src="game.js"></script>
+<script src="chon_xe.js"></script>
+<script src="const.js"></script>
+<script src="classCar.js"></script>
+<script src="road.js"></script>
+<script src="main.js"></script>
